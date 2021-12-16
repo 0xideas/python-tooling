@@ -8,9 +8,9 @@ def strongly_typed(*args, **kwargs):
 	def type_strongly(func):
 		def wrapper(*args, **kwargs):
 			for arg, type_ in zip(args, stargs):
-				assert(type(arg) == type_), f"{arg} should be of type {type_}"
+				assert isinstance(arg,type_), f"{arg} should be of type {type_}"
 			for kw, arg in kwargs.items():
-				assert(type(arg) == stkwargs[kw]), f"{arg} should be of type {stkwargs[kw]}"
+				assert isinstance(arg, stkwargs[kw]), f"{kw} should be of type {stkwargs[kw]} but is of type {type(arg)}: {arg}"
 			return(func(*args, **kwargs))
 		return(wrapper)
 	return(type_strongly)
